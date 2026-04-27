@@ -13,9 +13,12 @@ public class Car{
     public override bool Equals(object obj){
         if(obj is Car){
             Car other = (Car) obj;
-            return Make == other.Make && Model == other.Model;
+            return make == other.make && model == other.model;
         }else{
             return false;
         }
+    }
+    public override int GetHashCode(){
+        return HashCode.Combine(make, model);
     }
 }
