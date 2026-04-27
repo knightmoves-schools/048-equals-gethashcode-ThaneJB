@@ -11,14 +11,18 @@ public class Car{
     }
 
     public override bool Equals(object obj){
-        if(obj is Car){
-            Car other = (Car) obj;
-            return make == other.make && model == other.model;
-        }else{
-            return false;
-        }
+       return obj is Car && this == (Car) obj;
     }
+
     public override int GetHashCode(){
-        return HashCode.Combine(make, model);
+        return HashCode.Combine(Make, Model);
+    }
+
+    public static bool operator == (Car first, Car second){
+        return first.Make == second.Make && first.Model == second.Model;
+    }
+
+    public static bool operator !=(Car first, Car second){
+        return !(first == second);
     }
 }
